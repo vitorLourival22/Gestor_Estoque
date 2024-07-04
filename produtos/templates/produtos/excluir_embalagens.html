@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Excluir Embalagem</h1>
+  <ul>
+    {% for embalagem in embalagens %}
+      <li>
+        {{ embalagens.nome }} ({{ embalagens.tipo }})
+        <a href="{% url 'excluir_embalagens' embalagens.pk %}">Excluir</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

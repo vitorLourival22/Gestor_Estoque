@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Excluir Locais</h1>
+    <ul>
+        {% for local in Locais %}
+        <li>
+            {{ local.nome}} ({{ local.tipo}})
+            <a href="{% url 'excluir_locais' local.pk %}">Excluir</a>
+        </li>
+         {% endfor%}
+        </ul>
+{% endblock %}
