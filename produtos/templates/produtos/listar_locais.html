@@ -37,8 +37,8 @@
                     <td>{{ local.nome }}</td>
                     <td>{{ local.tipo }}</td>
                     <td class="text-end">
-                        <a href="{% url 'editar_local' local.id %}" class="btn btn-warning btn-sm">Editar</a>
-                        <a href="{% url 'excluir_local' local.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a href="{% url 'editar_locais' local.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'excluir_locais' local.id %}" class="btn btn-danger btn-sm">Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}
