@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Excluir Categoria</h1>
+    <ul>
+        {% for categoria in categorias %}
+        <li>
+            {{ categoria.nome}}
+            <a href="{% url 'excluir_categorias' categoria.pk %}">Excluir</a>
+        </li>
+         {% endfor%}
+        </ul>
+{% endblock %}

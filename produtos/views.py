@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render  # type: ignore
 
-from .forms import EmbalagemForm, LocalForm
-from .models import Embalagem, Local
+from .forms import CategoriaForm, EmbalagemForm, LocalForm
+from .models import Categoria, Embalagem, Local
 
 
 def inicio(request):  # noqa: F811
@@ -48,7 +48,7 @@ def adicionar_embalagens(request):  # noqa: F811
             form.save()
             return redirect('listar_embalagens')
     else:
-        form = LocalForm()
+        form = EmbalagemForm()
     return render(request, 'produtos/adicionar_embalagens.html', {'form': form})
 
 
@@ -86,3 +86,40 @@ def excluir_embalagens(request, pk):
     embalagens = Embalagem.objects.get(pk=pk)
     embalagens.delete()
     return redirect('listar_embalagens')
+
+
+def listar_categorias(request):  # noqa: F811
+    consulta = request.GET.get('q')
+    categorias = Categoria.objects.all()
+    if consulta:
+        categorias = categorias.filter(nome_icontains=consulta)
+    return render(request, 'produtos/listar_categorias.html', {'categorias': categorias})  # noqa: E501
+
+
+def adicionar_categorias(request):  # noqa: F811
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_categorias')
+    else:
+        form = CategoriaForm()
+    return render(request, 'produtos/adicionar_categorias.html', {'form': form})  # noqa: E501
+
+
+def editar_categorias(request, pk):
+    categorias = Categoria.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST, instance=categorias)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_categorias')
+    else:
+        form = CategoriaForm(instance=categorias)
+    return render(request, 'produtos/editar_categorias.html', {'form': form, 'categorias': categorias})
+
+
+def excluir_categorias(request, pk):
+    categorias = Categoria.objects.get(pk=pk)
+    categorias.delete()
+    return redirect('listar_categorias')

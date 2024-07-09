@@ -13,3 +13,9 @@ class EmbalagemForm(forms.ModelForm):
     class Meta:
         model = Embalagem
         fields = ['nome', 'sigla']
+
+
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Embalagem
+        fields = ['nome', 'sigla']
