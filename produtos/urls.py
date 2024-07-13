@@ -3,9 +3,11 @@ from django.urls import path  # type: ignore
 from .views import (
   adicionar_categorias,
   adicionar_embalagens,
+  adicionar_fornecedores,
   adicionar_local,
   editar_categorias,
   editar_embalagens,
+  editar_fornecedores,
   editar_locais,
   excluir_categorias,
   excluir_embalagens,
@@ -13,6 +15,7 @@ from .views import (
   inicio,
   listar_categorias,
   listar_embalagens,
+  listar_fornecedores,
   listar_locais,
 )
 
@@ -31,4 +34,7 @@ urlpatterns = [
     path('categorias/adicionar/', adicionar_categorias, name='adicionar_categorias'),  # noqa: E501
     path('editar_categorias/<pk>/', editar_categorias, name='editar_categorias'),  # noqa: E501
     path('excluir_categorias/<pk>/', excluir_categorias, name='excluir_categorias'),   # noqa: E501
+    path('fornecedores/', listar_fornecedores, name='listar_fornecedores'),
+    path('fornecedores/adicionar/', adicionar_fornecedores, name='adicionar_fornecedores'),  # noqa: E501
+    path('editar_fornecedores/<pk>/', editar_fornecedores, name='editar_fornecedores'),  # noqa: E501
 ]
